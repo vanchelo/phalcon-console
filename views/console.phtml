@@ -1,0 +1,17 @@
+<?php include 'partials/head.phtml' ?>
+
+<div id="console" class="console" data-action="<?php echo $this->url->get(['for' => 'console_execute']) ?>">
+	<ul id="response" class="response"></ul>
+
+	<nav id="controlbar" class="controlbar">
+		<ul id="controls" class="controls"></ul>
+
+		<div id="execute" class="execute">Execute</div>
+	</nav>
+
+	<section id="editor" class="editor">
+	</section>
+</div>
+
+<?php include 'partials/templates.phtml' ?>
+<?php include 'partials/foot.phtml' ?>
