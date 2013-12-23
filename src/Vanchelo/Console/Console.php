@@ -45,6 +45,14 @@ class Console extends Component
 		'error'        => false
 	);
 
+    /*function __construct(AccessInterface $access)
+    {
+        if ( ! $access->check())
+        {
+            throw new \Exception('Access denied', 403);
+        }
+    }*/
+
     /**
 	 * Adds one or multiple fields into profile.
 	 *
@@ -149,21 +157,9 @@ class Console extends Component
 		}
 	}
 
-    public function checkAccess()
+    public function render()
     {
-        $filter = $this->di['console.config']->filter;
-        $ips = $this->di['console.config']->$filter->toArray();
-        $ip = $this->di['request']->getClientAddress();
-
-        if ($filter == self::WHITELIST and in_array($ip, $ips))
-        {
-            return true;
-        }
-        elseif ($filter == self::BLACKLIST and ! in_array($ip, $ips))
-        {
-            return true;
-        }
-
-        return false;
+        return $this->di['console.view']->render('console');
     }
+
 }

@@ -8,6 +8,21 @@ abstract class ControllerBase extends Controller
 {
     protected $restful = false;
 
+    /**
+     * Check access rights
+     *
+     * @param Dispatcher $dispatcher
+     *
+     * @throws \Phalcon\Mvc\Dispatcher\Exception
+     */
+    public function beforeExecuteRoute(Dispatcher $dispatcher)
+    {
+        if ( ! $this->di['console.access']->check())
+        {
+            throw new DispatcherException('Not Found', 404);
+        }
+    }
+
     public function initialize()
     {
         $this->response->setContentType('text/html', 'UTF-8');

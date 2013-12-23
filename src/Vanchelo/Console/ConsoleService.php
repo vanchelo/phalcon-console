@@ -24,23 +24,32 @@ class ConsoleService
         $this->di = $di;
 
         $this->registerConfig();
-        $this->registerRoutes($this->di['router']);
+        $this->registerRoutes();
         $this->registerViewService();
         $this->registerConsoleService();
+        $this->registerConsoleAccessService();
     }
 
-    protected function registerRoutes($router)
+    protected function registerRoutes()
     {
+        $router = $this->di['router'];
+
         require __DIR__ . '/config/routes.php';
     }
 
     protected function registerConsoleService()
     {
-        $this->di['console'] = function() {
-            $console = new Console();
+        $this->di['console'] = 'Console\Console';
 
-            return $console;
-        };
+        /*$this->di['console'] = [
+            'className' => 'Console\Console',
+            'arguments' => [
+                [
+                    'type' => 'service',
+                    'name' => 'console.access'
+                ],
+            ]
+        ];*/
     }
 
     protected function registerViewService()
@@ -61,6 +70,11 @@ class ConsoleService
 
             return $config;
         };
+    }
+
+    protected function registerConsoleAccessService()
+    {
+        $this->di['console.access'] = $this->di['console.config']->check_access_class;
     }
 
 }

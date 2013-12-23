@@ -2,6 +2,17 @@
 
 return new \Phalcon\Config([
     'viewsDir' => __DIR__ . '/../views/',
+
+    // Класс проверки прав доступа
+    'check_access_class' => 'Console\AccessCheck',
+
+    // Проверка прав доступа по IP
+    'check_ip' => true,
+
+    'whitelist' => 'whitelist',
+    'blacklist' => 'blacklist',
+
+
 	/*
 	|--------------------------------------------------------------------------
 	| Console routes filter
