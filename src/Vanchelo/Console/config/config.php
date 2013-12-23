@@ -4,7 +4,7 @@ return new \Phalcon\Config([
     'viewsDir' => __DIR__ . '/../views/',
 
     // Класс проверки прав доступа
-    'check_access_class' => 'Console\AccessCheck',
+    'check_access_class' => 'Vanchelo\Console\AccessCheck',
 
     // Проверка прав доступа по IP
     'check_ip' => true,
