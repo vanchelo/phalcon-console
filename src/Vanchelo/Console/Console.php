@@ -157,6 +157,11 @@ class Console extends Component
 		}
 	}
 
+    /**
+     * Render console
+     *
+     * @return string
+     */
     public function render()
     {
         return $this->di['console.view']->render('console');

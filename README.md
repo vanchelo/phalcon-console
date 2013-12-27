@@ -1,5 +1,6 @@
 Phalcon Console
 ===============
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/vanchelo/phalcon-console/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 Адаптированная под Phalcon https://github.com/darsain/laravel-console - Laravel 4 Console
 

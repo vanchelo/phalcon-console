@@ -24,6 +24,11 @@ class AccessCheck implements AccessInterface, \Phalcon\DI\InjectionAwareInterfac
         $this->di = $di;
     }
 
+    /**
+     * Check access rights
+     *
+     * @return bool
+     */
     public function check() {
         $config = $this->di['console.config'];
 
