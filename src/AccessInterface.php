@@ -2,5 +2,5 @@
 
 interface AccessInterface
 {
-    function check();
+    public function check();
 }

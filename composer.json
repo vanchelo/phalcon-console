@@ -1,0 +1,21 @@
+{
+    "name": "vanchelo/phalcon-console",
+    "type": "library",
+    "description": "Phalcon Ajax Console",
+    "keywords": ["console","ajax","phalcon","development"],
+    "homepage": "https://github.com/vanchelo/phalcon-console",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "Brezhnev Ivan"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vanchelo\\Console\\": "src/"
+        }
+    }
+}
