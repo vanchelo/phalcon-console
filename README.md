@@ -18,9 +18,21 @@ AJAX Консоль для выполнения PHP кода в браузере
  ```
 
 ##Установка
+- Через `composer`:
+Добавить в файл `composer.json` в секцию `require` `"vanchelo/phalcon-console": "dev-master"`
+```json
+{
+  "require": {
+    ...
+    "vanchelo/phalcon-console": "dev-master"
+    ...
+  }
+}
+```
+
+- Копи-паст:
 * Скопировать содержимое папки в любой каталог
 * Зарегистрировать в вашем автозагрузчике namespace Vanchelo\Console
-
 ```php
 // $loader = new Loader();
 
