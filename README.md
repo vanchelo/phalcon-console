@@ -55,6 +55,45 @@ new Vanchelo\Console\ConsoleService($di);
 
 Так же в консоле доступны все сервисы и службы
 
+## Свои настройки
+Для указания своих настроек консоли необходимо:
+- Создать файл с настройками в удобном месте, например такого содержания
+```php
+<?php
+// app/config/console-config.php
+return new \Phalcon\Config([
+    // Если хотим указать свой класс проверки прав доступа к консоли
+    'check_access_class' => 'MyConsoleAccessCheck',
+
+    // Проверка прав доступа по IP
+    'check_ip' => false, // Отключаем проверку по IP адресу
+]);
+```
+- Зарегистрировать в контейнере сервис настроек консоли до инициализации сервиса консоли
+```php
+$di['console.config'] = function ()
+{
+    // Пути исправить на свои
+    $config = require '/path/to/console-config.php';
+
+    return $config;
+};
+
+new \Vanchelo\Console\ConsoleService($di);
+```
+
+Для более точного информирования о времени инициализации консоли и исполнения кода, необходимо в файле `index.php` вашего приложения добавить перед остальным кодом, след. строку:
+
+```php
+define('PHALCONSTART', microtime(true));
+```
+Должно получится примерно так:
+```php
+<?php
+// public/index.php
+define('PHALCONSTART', microtime(true));
+```
+
 Пара скриншотов
 ![Console Before Execute](http://i58.fastpic.ru/big/2013/1221/9d/fddb76f0f45ab5b665144e8dc7cd6f9d.jpg "Консоль до выполнеиня")
 ![Console After Execute](http://i58.fastpic.ru/big/2013/1221/19/a60efe026438b9a17b0ff8e73470ec19.jpg "Консоль после выполнеиня")
