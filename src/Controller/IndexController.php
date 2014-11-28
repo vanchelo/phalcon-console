@@ -6,5 +6,4 @@ class IndexController extends ControllerBase
 	{
         return $this->di['console']->render();
 	}
-
 }
