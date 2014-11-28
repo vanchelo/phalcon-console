@@ -61,12 +61,14 @@ class ConsoleService
 
     protected function registerConfig()
     {
-        $this->di['console.config'] = function ()
-        {
-            $config = require __DIR__ . '/config/config.php';
+        $config = require __DIR__ . '/config/config.php';
 
-            return $config;
-        };
+        if ($this->di->has('console.config'))
+        {
+            $config->merge($this->di->get('console.config'));
+        }
+
+        $this->di['console.config'] = $config;
     }
 
     protected function registerConsoleAccessService()
