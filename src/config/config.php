@@ -9,9 +9,6 @@ return new \Phalcon\Config([
     // Проверка прав доступа по IP
     'check_ip' => true,
 
-    'whitelist' => 'whitelist',
-    'blacklist' => 'blacklist',
-
     /*
     |--------------------------------------------------------------------------
     | Console routes filter
