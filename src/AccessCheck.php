@@ -45,7 +45,8 @@ class AccessCheck implements AccessInterface, \Phalcon\DI\InjectionAwareInterfac
         if ($filter == $config->whitelist and in_array($ip, $ips))
         {
             return true;
-        } elseif ($filter == $config->blacklist and ! in_array($ip, $ips))
+        }
+        elseif ($filter == $config->blacklist and ! in_array($ip, $ips))
         {
             return true;
         }
