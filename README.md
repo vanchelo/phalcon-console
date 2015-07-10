@@ -17,12 +17,19 @@ Example, commissioning editor, click **Execute** `[Ctrl + Enter]`
 
 ##Setting
 ###Via `composer`:
-Add to file `composer.json` section `require`:
+Add to file `composer.json` section `repositories` and `require`:
 ```
 "vanchelo/phalcon-console": "dev-master"
 ```
+
 ```json
 {
+  "repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/teepluss/phalcon-console"
+    }
+  ],
   "require": {
     "vanchelo/phalcon-console": "dev-master"
   }
