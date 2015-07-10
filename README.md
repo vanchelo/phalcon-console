@@ -1,23 +1,23 @@
 Phalcon Console
 ===============
-Адаптированная под Phalcon https://github.com/darsain/laravel-console - Laravel 4 Console
+Adapted by Phalcon https://github.com/darsain/laravel-console - Laravel 4 Console
 
-AJAX Консоль для выполнения PHP кода в браузере с подсветкой, возможностью сохранения последнего выполненного кода, ограничением доступа по IP адресу
+AJAX console to execute PHP code in the browser with light, the ability to save the last code execution, limited access by IP address
 
- Пример, вводим в окно редактора, нажимаем **Execute** `[Ctrl+Enter]`
+Example, commissioning editor, click **Execute** `[Ctrl + Enter]`
  ```php
  $user = Users::findFirst(1);
 
  echo $user->name;
  ```
- Результат
+ Result
  ```php
  vanchelo
  ```
 
-##Установка
-###Через `composer`:
-Добавить в файл `composer.json` в секцию `require`:
+##Setting
+###Via `composer`:
+Add to file `composer.json` section `require`:
 ```
 "vanchelo/phalcon-console": "dev-master"
 ```
@@ -28,12 +28,12 @@ AJAX Консоль для выполнения PHP кода в браузере
   }
 }
 ```
-В терминале выполнить команду `composer update`
+In the terminal, run the command `composer update`
 
 
-###Копи-паст:
-* Скопировать содержимое папки в любой каталог
-* Зарегистрировать в вашем автозагрузчике namespace Vanchelo\Console
+###Copy and paste:
+* Copy the contents of a folder to any directory
+* Register your autoloader namespace Vanchelo\Console
 ```php
 // $loader = new Loader();
 
@@ -43,8 +43,8 @@ $loader->registerNamespaces(array(
 ));
 ```
 
-* Скопировать содержимое папки public в вашу public папку доступную из WEB
-* Добавить в сервисы
+* Copy the contents of folders in your public folder accessible from public WEB
+* Add Services
 
 ```php
 /**
@@ -53,7 +53,7 @@ $loader->registerNamespaces(array(
 new Vanchelo\Console\ConsoleService($di);
 ```
 
-* Добавить список разрешенных IP адресов в src/config/config.php
+* Add to the list of allowed IP addresses in the src/config/config.php
 
 ```php
 /* ... */
@@ -64,29 +64,29 @@ new Vanchelo\Console\ConsoleService($di);
 /* ... */
 ```
 
-Всё! Консоль должна быть доступна по адресу http://site.com/phalcon-console
+Everything! The console must be available at http://site.com/phalcon-console
 
-Так же в консоле доступны все сервисы и службы
+As in the console are available all the services and service
 
-## Свои настройки
-Для указания своих настроек консоли необходимо:
-- Создать файл с настройками в удобном месте, например такого содержания
+## Your settings
+To specify your settings console, you must:
+- Create a configuration file in a convenient location, such as this content
 ```php
 <?php
 // app/config/console-config.php
 return new \Phalcon\Config([
-    // Если хотим указать свой класс проверки прав доступа к консоли
+    // If you want to specify the class test access rights to the console
     'check_access_class' => 'MyConsoleAccessCheck',
 
-    // Проверка прав доступа по IP
-    'check_ip' => false, // Отключаем проверку по IP адресу
+    // Check the permissions on the IP
+    'check_ip' => false, // disable scanning by IP address
 ]);
 ```
-- Зарегистрировать в контейнере сервис настроек консоли до инициализации сервиса консоли
+- Sign-up in the container service settings console to initialize the service console
 ```php
 $di['console.config'] = function ()
 {
-    // Пути исправить на свои
+    // Path to correct its
     $config = require '/path/to/console-config.php';
 
     return $config;
@@ -95,18 +95,18 @@ $di['console.config'] = function ()
 new \Vanchelo\Console\ConsoleService($di);
 ```
 
-Для более точного информирования о времени инициализации консоли и исполнения кода, необходимо в файле `index.php` вашего приложения добавить перед остальным кодом, след. строку:
+For more precise information about the time of initializing the console and run the code, you must file `index.php` in your application to add to the rest of the code mark. line:
 
 ```php
 define('PHALCONSTART', microtime(true));
 ```
-Должно получится примерно так:
+It should look something like this:
 ```php
 <?php
 // public/index.php
 define('PHALCONSTART', microtime(true));
 ```
 
-Пара скриншотов
+A couple of screenshots
 ![Console Before Execute](http://i58.fastpic.ru/big/2013/1221/9d/fddb76f0f45ab5b665144e8dc7cd6f9d.jpg "Консоль до выполнеиня")
 ![Console After Execute](http://i58.fastpic.ru/big/2013/1221/19/a60efe026438b9a17b0ff8e73470ec19.jpg "Консоль после выполнеиня")
