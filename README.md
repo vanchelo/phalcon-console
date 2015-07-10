@@ -24,15 +24,15 @@ Add to file `composer.json` section `repositories` and `require`:
 
 ```json
 {
-  "repositories": [
-    {
-        "type": "vcs",
-        "url": "https://github.com/teepluss/phalcon-console"
-    }
-  ],
-  "require": {
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/teepluss/phalcon-console"
+        }
+    ],
+    "require": {
         "vanchelo/phalcon-console": "dev-master"
-  }
+    }
 }
 ```
 In the terminal, run the command `composer update`
