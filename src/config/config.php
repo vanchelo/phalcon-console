@@ -7,7 +7,7 @@ return new \Phalcon\Config([
     'check_access_class' => 'Vanchelo\Console\AccessCheck',
 
     // Проверка прав доступа по IP
-    'check_ip' => true,
+    'check_ip' => false,
 
     /*
     |--------------------------------------------------------------------------

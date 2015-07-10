@@ -23,11 +23,11 @@
 
 <script type="text/html" id="template_controls_intro">
 	<li class="stretch">
-		<strong><code>{{=(navigator.appVersion.indexOf("Mac")!=-1 ? 'Cmd' : 'Ctrl') }}+Enter</code></strong>: выполнить
-		<span class="divider"></span> <strong><code>Esc</code></strong>: сбрость
-		<span class="divider"></span> <strong><code>Tab</code></strong>: фокус
+		<strong><code>{{=(navigator.appVersion.indexOf("Mac")!=-1 ? 'Cmd' : 'Ctrl') }}+Enter</code></strong>: execute
+		<span class="divider"></span> <strong><code>Esc</code></strong>: reset view
+		<span class="divider"></span> <strong><code>Tab</code></strong>: refocus editor
 	</li>
-	<li class="remember"><span class="button {{=(checked ? 'checked' : '') }}">запомнить код</span></li>
+	<li class="remember"><span class="button {{=(checked ? 'checked' : '') }}">remember code</span></li>
 </script>
 
 <script type="text/html" id="template_ended_unexpectedly">
