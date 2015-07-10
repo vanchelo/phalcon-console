@@ -31,7 +31,7 @@ Add to file `composer.json` section `repositories` and `require`:
     }
   ],
   "require": {
-    "vanchelo/phalcon-console": "dev-master"
+        "vanchelo/phalcon-console": "dev-master"
   }
 }
 ```
