@@ -46,7 +46,7 @@ In the terminal, run the command `composer update`
 
 $loader->registerNamespaces(array(
     /* ... */
-    'Vanchelo\Console' => __DIR__ . '/../library/console/src/', // Путь может быть другим
+    'Vanchelo\Console' => __DIR__ . '/../library/console/src/', // The path may be different
 ));
 ```
 
