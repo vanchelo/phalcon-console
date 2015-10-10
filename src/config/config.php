@@ -3,11 +3,11 @@
 return new \Phalcon\Config([
     'viewsDir' => __DIR__ . '/../views/',
 
-    // Класс проверки прав доступа
+    // If you want to specify the class test access rights to the console
     'check_access_class' => 'Vanchelo\Console\AccessCheck',
 
-    // Проверка прав доступа по IP
-    'check_ip' => true,
+    // Check the permissions on the IP
+    'check_ip' => false,
 
     /*
     |--------------------------------------------------------------------------

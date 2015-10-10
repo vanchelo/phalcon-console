@@ -1,5 +1,7 @@
 <?php namespace Vanchelo\Console;
 
+use Phalcon\DiInterface;
+
 class AccessCheck implements AccessInterface, \Phalcon\DI\InjectionAwareInterface
 {
     protected $di;
@@ -19,7 +21,7 @@ class AccessCheck implements AccessInterface, \Phalcon\DI\InjectionAwareInterfac
      *
      * @param \Phalcon\DiInterface $di
      */
-    public function setDI($di)
+    public function setDI(DiInterface  $di)
     {
         $this->di = $di;
     }
