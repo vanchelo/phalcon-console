@@ -1,4 +1,5 @@
 <?php
+
 $router->addGet('/phalcon-console', [
     'module'     => null,
     'namespace'  => 'Vanchelo\Console\Controller',

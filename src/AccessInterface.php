@@ -1,4 +1,6 @@
-<?php namespace Vanchelo\Console;
+<?php
+
+namespace Vanchelo\Console;
 
 interface AccessInterface
 {

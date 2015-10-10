@@ -1,8 +1,11 @@
-<?php namespace Vanchelo\Console;
+<?php
+
+namespace Vanchelo\Console;
 
 defined('PHALCONSTART') or define('PHALCONSTART', microtime(true));
 
 use Phalcon\DI;
+use Phalcon\DiInterface;
 use Phalcon\Mvc\View\Simple as View;
 
 class ConsoleService
@@ -10,16 +13,16 @@ class ConsoleService
     /**
      * The application instance.
      *
-     * @var \Phalcon\DI
+     * @var DiInterface
      */
     protected $di;
 
     /**
      * Create a new service provider instance.
      *
-     * @param \Phalcon\DI $di
+     * @param DiInterface $di
      */
-    public function __construct(DI $di)
+    public function __construct(DiInterface $di)
     {
         $this->di = $di;
 
@@ -30,6 +33,9 @@ class ConsoleService
         $this->registerConsoleAccessService();
     }
 
+    /**
+     * Register console routes
+     */
     protected function registerRoutes()
     {
         $router = $this->di['router'];
@@ -44,12 +50,10 @@ class ConsoleService
 
     protected function registerViewService()
     {
-        $this->di['console.view'] = function ()
-        {
+        $this->di['console.view'] = function () {
             $view = new View();
 
-            if ($this->di->has('view'))
-            {
+            if ($this->di->has('view')) {
                 $this->di['view']->disable();
             }
 
@@ -63,8 +67,7 @@ class ConsoleService
     {
         $config = require __DIR__ . '/config/config.php';
 
-        if ($this->di->has('console.config'))
-        {
+        if ($this->di->has('console.config')) {
             $config->merge($this->di->get('console.config'));
         }
 

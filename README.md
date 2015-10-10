@@ -115,5 +115,5 @@ define('PHALCONSTART', microtime(true));
 ```
 
 A couple of screenshots
-![Console Before Execute](http://i58.fastpic.ru/big/2013/1221/9d/fddb76f0f45ab5b665144e8dc7cd6f9d.jpg "Консоль до выполнеиня")
-![Console After Execute](http://i58.fastpic.ru/big/2013/1221/19/a60efe026438b9a17b0ff8e73470ec19.jpg "Консоль после выполнеиня")
+![Console Before Execute](http://i58.fastpic.ru/big/2013/1221/9d/fddb76f0f45ab5b665144e8dc7cd6f9d.jpg "Console Before Execute")
+![Console After Execute](http://i58.fastpic.ru/big/2013/1221/19/a60efe026438b9a17b0ff8e73470ec19.jpg "Console After Execute")

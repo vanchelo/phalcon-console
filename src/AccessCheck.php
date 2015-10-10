@@ -1,15 +1,21 @@
-<?php namespace Vanchelo\Console;
+<?php
 
+namespace Vanchelo\Console;
+
+use Phalcon\DI\InjectionAwareInterface;
 use Phalcon\DiInterface;
 
-class AccessCheck implements AccessInterface, \Phalcon\DI\InjectionAwareInterface
+class AccessCheck implements AccessInterface, InjectionAwareInterface
 {
+    /**
+     * @var DiInterface
+     */
     protected $di;
 
     /**
      * Returns the internal dependency injector
      *
-     * @return \Phalcon\DiInterface
+     * @return DiInterface
      */
     public function getDI()
     {
@@ -19,9 +25,9 @@ class AccessCheck implements AccessInterface, \Phalcon\DI\InjectionAwareInterfac
     /**
      * Sets the dependency injector
      *
-     * @param \Phalcon\DiInterface $di
+     * @param DiInterface $di
      */
-    public function setDI(DiInterface  $di)
+    public function setDI(DiInterface $di)
     {
         $this->di = $di;
     }
@@ -35,8 +41,7 @@ class AccessCheck implements AccessInterface, \Phalcon\DI\InjectionAwareInterfac
     {
         $config = $this->di['console.config'];
 
-        if ( ! $config->check_ip)
-        {
+        if (!$config->check_ip) {
             return true;
         }
 
@@ -44,12 +49,9 @@ class AccessCheck implements AccessInterface, \Phalcon\DI\InjectionAwareInterfac
         $ips = $config->$filter->toArray();
         $ip = $this->di['request']->getClientAddress();
 
-        if ($filter == $config->whitelist and in_array($ip, $ips))
-        {
+        if (($filter == $config->whitelist) && in_array($ip, $ips)) {
             return true;
-        }
-        elseif ($filter == $config->blacklist and ! in_array($ip, $ips))
-        {
+        } elseif (($filter == $config->blacklist) && !in_array($ip, $ips)) {
             return true;
         }
 

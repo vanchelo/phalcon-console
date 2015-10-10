@@ -1,4 +1,6 @@
-<?php namespace Vanchelo\Console;
+<?php
+
+namespace Vanchelo\Console;
 
 use Phalcon\Mvc\User\Component;
 
@@ -11,7 +13,7 @@ class Console extends Component
      *
      * @var array
      */
-    public $error_map = [
+    public $errorMap = [
         E_ERROR             => 'E_ERROR',
         E_WARNING           => 'E_WARNING',
         E_PARSE             => 'E_PARSE',
@@ -36,27 +38,25 @@ class Console extends Component
      * @var array
      */
     public $profile = [
-        'memory'      => 0,
+        'memory' => 0,
         'memory_peak' => 0,
-        'time'        => 0,
-        'time_total'  => 0,
-        'output'      => '',
+        'time' => 0,
+        'time_total' => 0,
+        'output' => '',
         'output_size' => 0,
-        'error'       => false
+        'error' => false,
     ];
 
     /**
      * Adds one or multiple fields into profile.
      *
      * @param string $property Property name, or an array of name => value pairs.
-     * @param mixed $value Property value.
+     * @param mixed  $value    Property value.
      */
     public function addProfile($property, $value = null)
     {
-        if (gettype($property) === 'array')
-        {
-            foreach ($property as $key => $value)
-            {
+        if (is_array($property)) {
+            foreach ($property as $key => $value) {
                 $this->addProfile($key, $value);
             }
 
@@ -64,10 +64,9 @@ class Console extends Component
         }
 
         // Normalize properties
-        $normalizer_name = 'normalize' . ucfirst($property);
-        if (method_exists(__CLASS__, $normalizer_name))
-        {
-            $value = call_user_func([__CLASS__, $normalizer_name], $value);
+        $normalizerName = 'normalize' . ucfirst($property);
+        if (method_exists(__CLASS__, $normalizerName)) {
+            $value = call_user_func([__CLASS__, $normalizerName], $value);
         }
 
         $this->profile[$property] = $value;
@@ -82,9 +81,9 @@ class Console extends Component
     {
         // Extend the profile with current data
         $this->addProfile([
-            'memory'      => memory_get_usage(true),
+            'memory' => memory_get_usage(true),
             'memory_peak' => memory_get_peak_usage(true),
-            'time_total'  => round((microtime(true) - PHALCONSTART) * 1000),
+            'time_total' => round((microtime(true) - PHALCONSTART) * 1000),
         ]);
 
         return $this->profile;
@@ -93,7 +92,7 @@ class Console extends Component
     /**
      * Executes a code and returns current profile.
      *
-     * @param  string $code
+     * @param string $code
      *
      * @return array
      */
@@ -108,16 +107,15 @@ class Console extends Component
         ob_end_clean();
 
         // Retrieve an error
-        if ($estatus === false)
-        {
+        if ($estatus === false) {
             $this->addProfile('error', error_get_last());
         }
 
         // Extend the profile
         $this->addProfile([
-            'time'        => round(($console_execute_end - $console_execute_start) * 1000, 2),
-            'output'      => $output,
-            'output_size' => strlen($output)
+            'time' => round(($console_execute_end - $console_execute_start) * 1000, 2),
+            'output' => $output,
+            'output_size' => strlen($output),
         ]);
 
         return $this->getProfile();
@@ -133,18 +131,14 @@ class Console extends Component
     public function normalizeError($error, $type = 0)
     {
         // Set human readable error type
-        if (isset($error['type']) and isset($this->error_map[$error['type']]))
-        {
-            $error['type'] = $this->error_map[$error['type']];
+        if (isset($error['type']) and isset($this->errorMap[$error['type']])) {
+            $error['type'] = $this->errorMap[$error['type']];
         }
 
         // Validate and return the error
-        if (isset($error['type'], $error['message'], $error['file'], $error['line']))
-        {
+        if (isset($error['type'], $error['message'], $error['file'], $error['line'])) {
             return $error;
-        }
-        else
-        {
+        } else {
             return $this->profile['error'];
         }
     }
