@@ -93,30 +93,25 @@ class Console extends Component
      * Executes a code and returns current profile.
      *
      * @param string $code
-     *
-     * @return array
      */
     public function execute($code)
     {
         // Execute the code
         ob_start();
-        $console_execute_start = microtime(true);
-        $estatus = @eval($code);
-        $console_execute_end = microtime(true);
+        $startTime = microtime(true);
+        @eval($code);
+        $endTime = microtime(true);
         $output = ob_get_contents();
         ob_end_clean();
 
-        // Retrieve an error
-        if ($estatus === false) {
-            $this->addProfile('error', error_get_last());
-        }
-
         // Extend the profile
         $this->addProfile([
-            'time' => round(($console_execute_end - $console_execute_start) * 1000, 2),
+            'time' => round(($endTime - $startTime) * 10000, 3),
             'output' => $output,
             'output_size' => strlen($output),
         ]);
+
+        $this->addProfile('error', error_get_last());
 
         return $this->getProfile();
     }

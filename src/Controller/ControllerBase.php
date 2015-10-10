@@ -8,8 +8,6 @@ use Phalcon\Mvc\Dispatcher\Exception as DispatcherException;
 
 abstract class ControllerBase extends Controller
 {
-    protected $restful = false;
-
     /**
      * Check access rights
      *
@@ -24,24 +22,6 @@ abstract class ControllerBase extends Controller
         }
     }
 
-    public function initialize()
-    {
-        $this->response->setContentType('text/html', 'UTF-8');
-        if ($this->restful) {
-            $this->setJsonResponse();
-        }
-    }
-
-    /**
-     * Call this func to set json response enabled
-     */
-    public function setJsonResponse()
-    {
-        $this->view->disable();
-
-        $this->response->setContentType('application/json', 'UTF-8');
-    }
-
     /**
      * After route executed event
      *
@@ -51,14 +31,13 @@ abstract class ControllerBase extends Controller
     {
         $data = $dispatcher->getReturnedValue();
 
-        if ($this->restful) {
-            if (is_array($data)) {
-                $data = json_encode($data, JSON_UNESCAPED_UNICODE);
-            }
-
+        if (is_array($data)) {
+            $this->response->setJsonContent($data, JSON_UNESCAPED_UNICODE);
+        } elseif (is_scalar($data)) {
+            $this->response->setContent($data);
         }
 
-        $this->response->setContent($data);
         $this->response->send();
+        exit();
     }
 }

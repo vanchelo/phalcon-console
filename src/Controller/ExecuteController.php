@@ -4,8 +4,9 @@ namespace Vanchelo\Console\Controller;
 
 class ExecuteController extends ControllerBase
 {
-    protected $restful = true;
-
+    /**
+     * @return array
+     */
     public function indexAction()
     {
         $code = $this->request->getPost('code');

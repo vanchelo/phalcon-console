@@ -45,7 +45,9 @@ class ConsoleService
 
     protected function registerConsoleService()
     {
-        $this->di['console'] = 'Vanchelo\Console\Console';
+        $this->di['console'] = function () {
+            return new Console();
+        };
     }
 
     protected function registerViewService()
