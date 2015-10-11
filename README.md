@@ -5,49 +5,34 @@ Adapted by Phalcon https://github.com/darsain/laravel-console - Laravel 4 Consol
 AJAX console to execute PHP code in the browser with light, the ability to save the last code execution, limited access by IP address
 
 Example, commissioning editor, click **Execute** `[Ctrl + Enter]`
- ```php
- $user = Users::findFirst(1);
 
- echo $user->name;
- ```
- Result
- ```php
- vanchelo
- ```
+```php
+$user = Users::findFirst(1);
 
-##Setting
-###Via `composer`:
-Add to file `composer.json` section `repositories` and `require`:
-```
-"vanchelo/phalcon-console": "dev-master"
+echo $user->name;
 ```
 
-```json
-{
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/teepluss/phalcon-console"
-        }
-    ],
-    "require": {
-        "vanchelo/phalcon-console": "dev-master"
-    }
-}
+Result
+```php
+vanchelo
 ```
-In the terminal, run the command `composer update`
 
+##Installation
+Install the latest stable version using `composer`:
+```
+composer require vanchelo/phalcon-console
+```
 
 ###Copy and paste:
 * Copy the contents of a folder to any directory
-* Register your autoloader namespace Vanchelo\Console
+* Register your autoloader namespace `Vanchelo\Console`
+
 ```php
 // $loader = new Loader();
 
-$loader->registerNamespaces(array(
-    /* ... */
+$loader->registerNamespaces([
     'Vanchelo\Console' => __DIR__ . '/../library/console/src/', // The path may be different
-));
+]);
 ```
 
 * Copy the contents of folders in your public folder accessible from public WEB
@@ -60,7 +45,7 @@ $loader->registerNamespaces(array(
 new Vanchelo\Console\ConsoleService($di);
 ```
 
-* Add to the list of allowed IP addresses in the src/config/config.php
+* Add to the list of allowed IP addresses in the `src/config/config.php`
 
 ```php
 /* ... */
@@ -71,13 +56,14 @@ new Vanchelo\Console\ConsoleService($di);
 /* ... */
 ```
 
-Everything! The console must be available at http://site.com/phalcon-console
+Everything! The console must be available at `http://site.com/phalcon-console`
 
 As in the console are available all the services and service
 
 ## Your settings
 To specify your settings console, you must:
 - Create a configuration file in a convenient location, such as this content
+
 ```php
 <?php
 // app/config/console-config.php
@@ -89,7 +75,9 @@ return new \Phalcon\Config([
     'check_ip' => false, // disable scanning by IP address
 ]);
 ```
+
 - Sign-up in the container service settings console to initialize the service console
+
 ```php
 $di['console.config'] = function ()
 {
