@@ -106,7 +106,7 @@ class Console extends Component
 
         // Extend the profile
         $this->addProfile([
-            'time' => round(($endTime - $startTime) * 10000, 3),
+            'time' => round(($endTime - $startTime) * 1000, 2),
             'output' => $output,
             'output_size' => strlen($output),
         ]);
