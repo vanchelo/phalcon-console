@@ -17,13 +17,13 @@ Result
 vanchelo
 ```
 
-##Installation
+## Installation
 Install the latest stable version using `composer`:
 ```
 composer require vanchelo/phalcon-console
 ```
 
-###Copy and paste:
+### Copy and paste:
 * Copy the contents of a folder to any directory
 * Register your autoloader namespace `Vanchelo\Console`
 
